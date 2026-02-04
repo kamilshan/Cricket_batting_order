@@ -2,9 +2,9 @@
 
 A simple, fun, and fair web app to randomly decide the *batting (or playing) order* for cricket players using alphabets instead of names.
 
-Designed especially for *kids, school matches, and casual cricket games*  no arguments, no bias, just spin and play.
+Designed especially for *kids, school matches, and casual cricket games* no arguments, no bias, just spin and play.
 
----
+--
 
 ## 🚀 Features
 

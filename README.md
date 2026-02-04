@@ -2,7 +2,7 @@
 
 A simple, fun, and fair web app to randomly decide the *batting (or playing) order* for cricket players using alphabets instead of names.
 
-Designed especially for *kids, school matches, and casual cricket games* — no arguments, no bias, just spin and play.
+Designed especially for *kids, school matches, and casual cricket games*  no arguments, no bias, just spin and play.
 
 ---
 
@@ -10,7 +10,7 @@ Designed especially for *kids, school matches, and casual cricket games* — no 
 
 - 🎲 Randomly assigns batting positions (no repeats)
 - 🔤 Players choose *alphabets (A–Z)* instead of names
-- ⚡ Instant result — no loading, no waiting
+- ⚡ Instant result  no loading, no waiting
 - 📱 Works on mobile, tablet, and desktop
 - 🔒 No accounts, no sign-ups, no data collection
 - 🌐 Works completely offline once loaded
@@ -41,7 +41,7 @@ User Browser | v HTML + CSS + JavaScript (Static Site)
 - No shared state between users
 - Randomization is local and fair
 
-A backend would be unnecessary over-engineering for this problem.
+A backend would be unnecessary over engineering for this problem.
 
 ---
 
@@ -130,7 +130,7 @@ Feel free to open issues or submit pull requests.
 
 📄 License
 
-This project is open-source and available under the MIT License.
+This project is open source and available under the MIT License.
 
 
 ---

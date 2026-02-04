@@ -4,7 +4,7 @@
 
 Designed especially for *kids, school matches, and casual cricket games* no arguments, no bias, just spin and play.*
 
---
+
 
 ## 🚀 Features
 
@@ -15,7 +15,7 @@ Designed especially for *kids, school matches, and casual cricket games* no argu
 - 🔒 No accounts, no sign-ups, no data collection
 - 🌐 Works completely offline once loaded
 
----
+
 
 ## 🧠 How It Works
 
@@ -27,7 +27,7 @@ Designed especially for *kids, school matches, and casual cricket games* no argu
 
 All logic runs *entirely in the browser* using JavaScript.
 
----
+
 
 ## 🏗️ Architecture
 
@@ -43,7 +43,7 @@ User Browser | v HTML + CSS + JavaScript (Static Site)
 
 A backend would be unnecessary over engineering for this problem.
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -51,7 +51,7 @@ A backend would be unnecessary over engineering for this problem.
 - CSS3
 - Vanilla JavaScript (no frameworks)
 
----
+
 
 ## 📦 Installation & Usage
 
@@ -70,7 +70,7 @@ python -m http.server
 Then open http://localhost:8000.
 
 
----
+
 
 🌍 Deployment
 
@@ -88,7 +88,7 @@ Cloudflare Pages
 Since it’s a static site, deployment is instant.
 
 
----
+
 
 🎯 Use Cases
 
@@ -102,9 +102,9 @@ Any sport or game requiring a fair play order
 
 
 
----
 
-📌 Future Improvements (Optional)
+
+📌 Future Improvements 
 
 Reset / New Match button
 
@@ -118,7 +118,7 @@ Team color themes
 
 
 
----
+
 
 🤝 Contributing
 
@@ -126,14 +126,14 @@ Contributions are welcome.
 Feel free to open issues or submit pull requests.
 
 
----
+
 
 📄 License
 
 This project is open source and available under the MIT License.
 
 
----
+
 
 🙌 Acknowledgements
 

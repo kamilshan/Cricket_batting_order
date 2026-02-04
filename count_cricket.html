@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Cricket Batting Order 2026</title>
+<style>
+  :root {
+    --primary: #00d2ff;
+    --accent: #ff9800;
+    --glass: rgba(255, 255, 255, 0.15);
+  }
+
+  body {
+    background: linear-gradient(135deg, #004e92, #000428);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    text-align: center;
+  }
+
+  h1 { font-weight: 300; margin-bottom: 1.5rem; letter-spacing: 1px; }
+  
+  .input-group { margin-bottom: 1.5rem; }
+  
+  input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  input:focus { border-color: var(--primary); background: rgba(255, 255, 255, 0.2); }
+
+  button {
+    background: linear-gradient(45deg, var(--accent), #f44336);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 14px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .hidden { display: none; }
+  
+  #alphabetGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 5px;
+  }
+
+  .player-slot {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+  }
+
+  .player-slot input { padding: 5px; text-align: center; margin-top: 5px; }
+
+  #dice { font-size: 3rem; margin: 20px 0; display: inline-block; transition: 0.5s; }
+  .spinning { animation: spin 0.6s infinite linear; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .result-list { text-align: left; background: rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 1rem; }
+  .result-item { padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .result-item:last-child { border-bottom: none; }
+  .rank { color: var(--accent); font-weight: bold; margin-right: 10px; }
+</style>
+</head>
+<body>
+
+<div class="glass-card">
+  <h1>🏏 BATTING ORDER</h1>
+
+  <!-- STEP 1: PLAYER COUNT -->
+  <div id="view1">
+    <p>How many players in your team?</p>
+    <div class="input-group">
+      <input type="number" id="numPlayers" min="2" max="26" placeholder="Enter number (e.g. 11)">
+    </div>
+    <button onclick="renderPlayerInputs()">Continue</button>
+  </div>
+
+  <!-- STEP 2: ALPHABET SELECTION -->
+  <div id="view2" class="hidden">
+    <p>Each player picks a unique letter (A-Z):</p>
+    <div id="alphabetGrid"></div>
+    <div id="dice">🎲</div>
+    <button id="spinBtn" onclick="processOrder()">GENERATE ORDER</button>
+  </div>
+
+  <!-- STEP 3: FINAL RESULTS -->
+  <div id="view3" class="hidden">
+    <div class="result-list" id="finalOrder"></div>
+    <button onclick="location.reload()" style="margin-top: 20px; background: #555;">New Game</button>
+  </div>
+</div>
+
+<script>
+  function renderPlayerInputs() {
+    const n = document.getElementById('numPlayers').value;
+    if (n < 2 || n > 26) return alert("Enter a valid number between 2 and 26.");
+
+    const grid = document.getElementById('alphabetGrid');
+    grid.innerHTML = '';
+    for (let i = 0; i < n; i++) {
+      grid.innerHTML += `
+        <div class="player-slot">
+          P${i+1}
+          <input type="text" class="player-char" maxlength="1" placeholder="?">
+        </div>`;
+    }
+    toggleView('view1', 'view2');
+  }
+
+  function processOrder() {
+    const inputs = document.querySelectorAll('.player-char');
+    const letters = Array.from(inputs).map(i => i.value.toUpperCase().trim());
+
+    if (letters.some(l => !/[A-Z]/.test(l))) return alert("All players must enter a letter (A-Z)!");
+    if (new Set(letters).size !== letters.length) return alert("Each player must pick a UNIQUE letter!");
+
+    // UI Feedback
+    const dice = document.getElementById('dice');
+    const btn = document.getElementById('spinBtn');
+    dice.classList.add('spinning');
+    btn.disabled = true;
+
+    setTimeout(() => {
+      // Fisher-Yates Shuffle Algorithm (Fair Randomization)
+      const shuffled = [...letters];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      displayResults(shuffled);
+      dice.classList.remove('spinning');
+      toggleView('view2', 'view3');
+    }, 1500);
+  }
+
+  function displayResults(order) {
+    const container = document.getElementById('finalOrder');
+    container.innerHTML = '<h3>Official Lineup:</h3>';
+    order.forEach((letter, index) => {
+      container.innerHTML += `
+        <div class="result-item">
+          <span class="rank">#${index + 1}</span> Batsman <b>${letter}</b>
+        </div>`;
+    });
+  }
+
+  function toggleView(hideId, showId) {
+    document.getElementById(hideId).classList.add('hidden');
+    document.getElementById(showId).classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>
+
